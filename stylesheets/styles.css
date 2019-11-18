@@ -1,6 +1,6 @@
 body {
-  background-color: #fff;
-  font: 14px/1.5 "Garamond", serif;
+  background-color: #f3f3df;
+  font: 16px "Garamond", serif;
   color:#727272;
   font-weight:200;
 }
@@ -12,11 +12,6 @@ h1, h2, h3, h4, h5, h6 {
 
 p, ul, ol, table, pre, dl {
   margin:0 0 20px;
-}
-
-div {
-    text-align:justify;  
-    text-justify:inter-word;
 }
 
 h1, h2, h3 {
