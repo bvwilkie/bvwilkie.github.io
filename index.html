@@ -100,33 +100,6 @@ li.dropdown {
 }
 </style>
 	  
-<style>
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-}
-
-.active, .accordion:hover {
-  background-color: #eee
-  ; 
-}
-
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-</style>
   </head>
   <body>
   <ul class="topnav">
@@ -158,35 +131,17 @@ li.dropdown {
 
 <p>I am a researcher, writer, and teacher with expertise in histories of Scotland and the British Empire, as well as Australian business and environmental history. I am the author of <i>The Scots in Australia 1788-1938</i> and <i>Gariwerd: An Environmental History of the Grampians</i>. A summary of my research projects can be <a href="research.html">found here</a>. A list of academic publications is <a href="publications.html">available here</a>.
 
-<p>
+<p><h3>Background & Experience</h3>
 
-<button class="accordion">Background & Experience</button>
-<div class="panel">
-  <p>In 2010, I completed a Bachelor of Arts at Monash University with majors in History and Philosophy. Prior to this, I studied performance and musicology at the Sir Zelman Cowen School of Music, and I am currently a regular writer for the classical music magazine, <i>Limelight</i>. As a historian I have been particularly interested in Scottish social networks, business connections, migration, and culture abroad, and my 2014 PhD thesis at Monash University explored the historical relationships between Scotland, Australia, and the British Empire. In 2014, I was elected as a Fellow of Society of Antiquaries of Scotland. My first book, <i>The Scots in Australia 1788-1938</i>, was published by the Scottish Historical Review Trust and Boydell Press in 2017.
+<p>In 2010, I completed a Bachelor of Arts at Monash University with majors in History and Philosophy. Prior to this, I studied performance and musicology at the Sir Zelman Cowen School of Music, and I am currently a regular writer for the classical music magazine, <i>Limelight</i>. As a historian I have been particularly interested in Scottish social networks, business connections, migration, and culture abroad, and my 2014 PhD thesis at Monash University explored the historical relationships between Scotland, Australia, and the British Empire. In 2014, I was elected as a Fellow of Society of Antiquaries of Scotland. My first book, <i>The Scots in Australia 1788-1938</i>, was published by the Scottish Historical Review Trust and Boydell Press in 2017.
 
 <p>In 2019, I was a Visiting Research Fellow at the University of Glasgow, where I investigated the historical religious and commercial connections between Scotland and Africa via a case study of the African Lakes Corporation in colonial Nyasaland. In 2020, my second book, <i>Gariwerd: An Environmental History of the Grampians</i> will be released by CSIRO Publishing. I am currently a Research Assistant at the Macquarie Business School, where I am collaborating on research examining interlocking directorates among top Australian companies in the twentieth century. Prior to this, between 2013 and 2017, I was Lecturer in Australian Studies and Early Career Development Fellow at Deakin University. I have also been a teaching associate at Monash University, a research assistant with the CRC for Water Sensitive Cities, and an editorial assistant with the <i>Australian Journal of Political Science</i>.</p>
-</div>
 <hr>
 
       </section>
 
     </div>
     <script src="javascripts/scale.fix.js"></script>
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
-</script>
-  </body>
+ 
+</body>
 </html>
