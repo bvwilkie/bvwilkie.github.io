@@ -121,9 +121,10 @@ li.dropdown {
 
 .panel {
   padding: 0 18px;
-  display: none;
   background-color: white;
+  max-height: 0;
   overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }
 </style>
   </head>
@@ -165,10 +166,6 @@ li.dropdown {
 
 <p>In 2019, I was a Visiting Research Fellow at the University of Glasgow, where I investigated the historical religious and commercial connections between Scotland and Africa via a case study of the African Lakes Corporation in colonial Nyasaland. In 2020, my second book, <i>Gariwerd: An Environmental History of the Grampians</i> will be released by CSIRO Publishing. I am currently a Research Assistant at the Macquarie Business School, where I am collaborating on research examining interlocking directorates among top Australian companies in the twentieth century. Prior to this, between 2013 and 2017, I was Lecturer in Australian Studies and Early Career Development Fellow at Deakin University. I have also been a teaching associate at Monash University, a research assistant with the CRC for Water Sensitive Cities, and an editorial assistant with the <i>Australian Journal of Political Science</i>.</p>
 </div>
-
-<h2>Background & Experience</h2>
-
-<p></p>
 <hr>
 
       </section>
@@ -183,10 +180,10 @@ for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function() {
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
     } else {
-      panel.style.display = "block";
+      panel.style.maxHeight = panel.scrollHeight + "px";
     }
   });
 }
