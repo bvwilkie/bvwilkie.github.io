@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Probate & Administration Calculator</title>
+    <title>Administration & Probate Fees (Vic.)</title>
     <style>
         :root {
             --bg-color: #f4f6f9;
             --card-bg: #ffffff;
             --text-color: #333333;
             --primary-color: #1a365d; /* Professional deep navy */
-            --accent-color: #2b6cb0;  /* Secondary slate blue */
+            --accent-color: #2b6cb0;  /* Slate blue */
             --border-color: #e2e8f0;
         }
 
@@ -27,53 +27,56 @@
         .container {
             background: var(--card-bg);
             width: 100%;
-            max-width: 480px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            max-width: 440px;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
         }
 
         .header {
             text-align: center;
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
+            padding-bottom: 14px;
+            margin-bottom: 22px;
         }
 
         .header h1 {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             color: var(--primary-color);
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 700;
         }
 
         .header p {
             font-size: 0.85rem;
-            color: #666;
-            margin: 5px 0 0 0;
+            color: #718096;
+            margin: 6px 0 0 0;
+            line-height: 1.4;
         }
 
         h2.section-title {
             font-size: 0.95rem;
             color: var(--accent-color);
             text-transform: uppercase;
-            margin: 20px 0 10px 0;
-            letter-spacing: 0.5px;
+            margin: 22px 0 12px 0;
+            letter-spacing: 0.75px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 4px;
+            font-weight: 700;
         }
 
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         label {
             display: block;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: var(--primary-color);
         }
 
@@ -84,22 +87,23 @@
         .input-wrapper::before {
             content: "$";
             position: absolute;
-            left: 12px;
+            left: 14px;
             top: 50%;
             transform: translateY(-50%);
             color: #a0aec0;
-            font-weight: bold;
+            font-weight: 500;
         }
 
         input[type="number"] {
             width: 100%;
-            padding: 10px 12px 10px 28px;
-            font-size: 1rem;
+            padding: 12px 14px 12px 30px;
+            font-size: 1.05rem;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             box-sizing: border-box;
             background-color: #f8fafc;
             -moz-appearance: textfield;
+            transition: all 0.2s ease;
         }
 
         input[type="number"]::-webkit-outer-spin-button,
@@ -110,8 +114,9 @@
 
         input:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--accent-color);
             background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
         }
 
         .results {
@@ -123,16 +128,23 @@
         .result-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 0.95rem;
+        }
+
+        .result-row.sub-gst {
+            font-size: 0.82rem;
+            color: #718096;
+            margin-bottom: 10px;
+            padding-left: 15px;
         }
 
         .result-row.total {
             font-weight: bold;
-            font-size: 1.15rem;
-            border-top: 1px solid var(--primary-color);
-            padding-top: 10px;
-            margin-top: 10px;
+            font-size: 1.25rem;
+            border-top: 2px solid var(--primary-color);
+            padding-top: 12px;
+            margin-top: 14px;
             color: var(--primary-color);
         }
 
@@ -146,8 +158,7 @@
 <div class="container">
     <div class="header">
         <h1>Administration & Probate Fees (Vic.)</h1>
-        <p>Administration & Probate Rules 2023</p>
-        <p>Practitioners Remuneration Order 2026</p>
+        <p>Administration & Probate Rules 2023<br>Practitioners Remuneration Order 2026</p>
     </div>
 
     <h2 class="section-title">Estate Values</h2>
@@ -159,15 +170,15 @@
     </div>
 
     <div class="form-group">
-        <label for="vicValue">Gross Value of Victorian Assets</label>
+        <label for="vicAssets">Gross Value of Victorian Assets</label>
         <div class="input-wrapper">
-            <input type="number" id="vicValue" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
+            <input type="number" id="vicAssets" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
         </div>
     </div>
 
     <h2 class="section-title">Estate Administration Fees</h2>
     <div class="form-group">
-        <label for="proAdminFee">Estimated Fees Under PRO</label>
+        <label for="proAdminFee">Estimated Fees Under PRO (Excl. GST)</label>
         <div class="input-wrapper">
             <input type="number" id="proAdminFee" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
         </div>
@@ -178,20 +189,32 @@
             <span>Probate Fee (Administration & Probate Rules 2023):</span>
             <span class="value" id="remunerationOut">$0.00</span>
         </div>
+        <div class="result-row sub-gst">
+            <span>+ 10% GST:</span>
+            <span class="value" id="remunerationGstOut">$0.00</span>
+        </div>
+
         <div class="result-row">
             <span>Estate Administration Fees (PRO):</span>
             <span class="value" id="adminFeesOut">$0.00</span>
         </div>
+        <div class="result-row sub-gst">
+            <span>+ 10% GST:</span>
+            <span class="value" id="adminGstOut">$0.00</span>
+        </div>
+
         <div class="result-row">
             <span>RedCrest Advertisement Fee:</span>
             <span class="value" id="advertisementFeeOut">$0.00</span>
         </div>
+
         <div class="result-row">
             <span>RedCrest Filing Fee:</span>
             <span class="value" id="filingFeeOut">$0.00</span>
         </div>
+
         <div class="result-row total">
-            <span>Total Estimated Cost:</span>
+            <span>Total Estimated Cost (inc. GST):</span>
             <span class="value" id="totalOut">$0.00</span>
         </div>
     </div>
@@ -199,65 +222,73 @@
 
 <script>
 function calculateAll() {
-    // Inputs
+    // 1. Gather input parameters
     const grossValue = parseFloat(document.getElementById('grossValue').value) || 0;
-    const vicValue = parseFloat(document.getElementById('vicValue').value) || 0;
-    const proAdminFee = parseFloat(document.getElementById('proAdminFee').value) || 0;
+    const vicValueForFiling = parseFloat(document.getElementById('vicAssets').value) || 0;
+    const proAdminFeeExGst = parseFloat(document.getElementById('proAdminFee').value) || 0;
 
-    let remuneration = 0;
+    let remunerationBase = 0;
     let advertisementFee = 0;
     let filingFee = 0;
 
-    // 1. Calculate Solicitor Remuneration via Application for Grant
+    // 2. Base Probate Application Scale (Rule 9.01)
     switch (true) {
-        case (grossValue <= 0):      remuneration = 0; break;
-        case (grossValue <= 10000):  remuneration = 213; break;
-        case (grossValue <= 12000):  remuneration = 246; break;
-        case (grossValue <= 14000):  remuneration = 283; break;
-        case (grossValue <= 16000):  remuneration = 318; break;
-        case (grossValue <= 18000):  remuneration = 354; break;
-        case (grossValue <= 20000):  remuneration = 391; break;
-        case (grossValue <= 30000):  remuneration = 425; break;
-        case (grossValue <= 40000):  remuneration = 463; break;
-        case (grossValue <= 50000):  remuneration = 499; break;
-        case (grossValue <= 60000):  remuneration = 535; break;
-        case (grossValue <= 70000):  remuneration = 572; break;
-        case (grossValue <= 80000):  remuneration = 608; break;
-        case (grossValue <= 90000):  remuneration = 644; break;
-        case (grossValue <= 100000): remuneration = 680; break;
+        case (grossValue <= 0):      remunerationBase = 0; break;
+        case (grossValue <= 10000):  remunerationBase = 213; break;
+        case (grossValue <= 12000):  remunerationBase = 246; break;
+        case (grossValue <= 14000):  remunerationBase = 283; break;
+        case (grossValue <= 16000):  remunerationBase = 318; break;
+        case (grossValue <= 18000):  remunerationBase = 354; break;
+        case (grossValue <= 20000):  remunerationBase = 391; break;
+        case (grossValue <= 30000):  remunerationBase = 425; break;
+        case (grossValue <= 40000):  remunerationBase = 463; break;
+        case (grossValue <= 50000):  remunerationBase = 499; break;
+        case (grossValue <= 60000):  remunerationBase = 535; break;
+        case (grossValue <= 70000):  remunerationBase = 572; break;
+        case (grossValue <= 80000):  remunerationBase = 608; break;
+        case (grossValue <= 90000):  remunerationBase = 644; break;
+        case (grossValue <= 100000): remunerationBase = 680; break;
         default:
             const excess = grossValue - 100000;
             const blocks = Math.ceil(excess / 50000);
-            remuneration = 680 + (blocks * 35);
+            remunerationBase = 680 + (blocks * 35); //
     }
 
-    // 2. RedCrest Advertisement Fee (Item 4.1(a) Standard Fee) [cite: 4]
-    if (vicValue > 0 || grossValue > 0) {
-        advertisementFee = 37.00;
+    // 3. Tax computations (10% GST additions)
+    const remunerationGst = remunerationBase * 0.10;
+    const adminFeesGst = proAdminFeeExGst * 0.10;
+
+    // 4. RedCrest Advertisement Fee (Item 4.1(a))
+    if (vicValueForFiling > 0 || grossValue > 0) {
+        advertisementFee = 37.00; //
     }
 
-    // 3. Victorian Supreme Court Filing Fees (Effective 1 July 2025 Standard Fees) [cite: 1, 4]
+    // 5. RedCrest Court Filing Fees (Effective 1 July 2025)
     switch (true) {
-        case (vicValue <= 0):           filingFee = 0; break;
-        case (vicValue < 250000):       filingFee = 0.00; break;     // [cite: 4]
-        case (vicValue < 500000):       filingFee = 529.50; break;   // [cite: 4]
-        case (vicValue < 1000000):      filingFee = 1059.00; break;  // [cite: 4]
-        case (vicValue < 2000000):      filingFee = 2471.10; break;  // [cite: 4]
-        case (vicValue < 3000000):      filingFee = 4942.10; break;  // [cite: 4]
-        case (vicValue < 5000000):      filingFee = 7396.40; break;  // [cite: 4]
-        case (vicValue < 7000000):      filingFee = 12355.40; break; // [cite: 4]
-        default:                        filingFee = 17297.50;        // [cite: 4]
+        case (vicValueForFiling <= 0):          filingFee = 0; break;
+        case (vicValueForFiling < 250000):       filingFee = 0.00; break;     //
+        case (vicValueForFiling < 500000):       filingFee = 529.50; break;   //
+        case (vicValueForFiling < 1000000):      filingFee = 1059.00; break;  //
+        case (vicValueForFiling < 2000000):      filingFee = 2471.10; break;  //
+        case (vicValueForFiling < 3000000):      filingFee = 4942.10; break;  //
+        case (vicValueForFiling < 5000000):      filingFee = 7396.40; break;  //
+        case (vicValueForFiling < 7000000):      filingFee = 12355.40; break; //
+        default:                                 filingFee = 17297.50;        //
     }
 
-    // 4. Render Outputs
-    document.getElementById('remunerationOut').innerText = formatCurrency(remuneration);
-    document.getElementById('adminFeesOut').innerText = formatCurrency(proAdminFee);
+    // 6. Push calculations out to the page elements
+    document.getElementById('remunerationOut').innerText = formatCurrency(remunerationBase);
+    document.getElementById('remunerationGstOut').innerText = formatCurrency(remunerationGst);
+    
+    document.getElementById('adminFeesOut').innerText = formatCurrency(proAdminFeeExGst);
+    document.getElementById('adminGstOut').innerText = formatCurrency(adminFeesGst);
+    
     document.getElementById('advertisementFeeOut').innerText = formatCurrency(advertisementFee);
     document.getElementById('filingFeeOut').innerText = formatCurrency(filingFee);
     
-    // Combine automated figures with the manual PRO entry
-    const totalCost = remuneration + proAdminFee + advertisementFee + filingFee;
-    document.getElementById('totalOut').innerText = formatCurrency(totalCost);
+    // Running aggregate calculation expressing final total fully GST-inclusive
+    const globalTotal = remunerationBase + remunerationGst + proAdminFeeExGst + adminFeesGst + advertisementFee + filingFee;
+    document.getElementById('totalOut').innerText = formatCurrency(globalTotal);
 }
 
 function formatCurrency(amount) {
