@@ -146,27 +146,27 @@
 <div class="container">
     <div class="header">
         <h1>Administration & Probate</h1>
-        <p>Rules 2023 Statutory Scale & Fees Calculator</p>
+        <p>Fees Calculator</p>
     </div>
 
     <h2 class="section-title">Estate Values</h2>
     <div class="form-group">
-        <label for="grossValue">Gross Value of Estate (Scale Base)</label>
+        <label for="grossValue">Gross Value of Estate</label>
         <div class="input-wrapper">
             <input type="number" id="grossValue" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="vicValue">Gross Value of Victorian Assets (Court Fee Base)</label>
+        <label for="vicValue">Gross Value of Victorian Assets</label>
         <div class="input-wrapper">
             <input type="number" id="vicValue" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
         </div>
     </div>
 
-    <h2 class="section-title">Additional Administration Fees (PRO)</h2>
+    <h2 class="section-title">Estate Administration Fees</h2>
     <div class="form-group">
-        <label for="proAdminFee">Total Pre & Post Grant Administration Fee</label>
+        <label for="proAdminFee">Total Administration Fees (PRO)</label>
         <div class="input-wrapper">
             <input type="number" id="proAdminFee" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
         </div>
@@ -174,11 +174,11 @@
 
     <div class="results">
         <div class="result-row">
-            <span>Solicitor Scale Remuneration:</span>
+            <span>Porbate Application Fee (Administration & Probate Rules 2023):</span>
             <span class="value" id="remunerationOut">$0.00</span>
         </div>
         <div class="result-row">
-            <span>PRO Administration Fees:</span>
+            <span>Estate Administration Fees (PRO):</span>
             <span class="value" id="adminFeesOut">$0.00</span>
         </div>
         <div class="result-row">
