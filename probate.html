@@ -129,14 +129,49 @@
                 box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
             }
 
-            /* ── Transmission radio options ── */
-            .transmission-options {
+            /* Toggle Switch */
+            .toggle-selector {
+                display: flex;
+                background: #eef2f7;
+                padding: 4px;
+                border-radius: 10px;
+                gap: 4px;
+            }
+
+            .toggle-btn {
+                flex: 1;
+                text-align: center;
+                padding: 12px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                color: #718096;
+                cursor: pointer;
+                border-radius: 8px;
+                transition: all 0.2s ease;
+            }
+
+            .toggle-btn.active {
+                background: var(--primary-color);
+                color: white;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .conditional-section {
+                display: block;
+            }
+
+            .conditional-section.hidden {
+                display: none !important;
+            }
+
+            /* Radio & Checkbox Selection Cards Layout */
+            .selection-options-group {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
             }
 
-            .transmission-option {
+            .selection-card {
                 display: flex;
                 align-items: center;
                 gap: 12px;
@@ -150,17 +185,18 @@
                     background 0.2s;
             }
 
-            .transmission-option:hover {
+            .selection-card:hover {
                 border-color: var(--accent-color);
                 background: #e6eef8;
             }
 
-            .transmission-option.selected {
+            .selection-card.selected {
                 border-color: var(--primary-color);
                 background: #dbeafe;
             }
 
-            .transmission-option input[type="radio"] {
+            .selection-card input[type="radio"],
+            .selection-card input[type="checkbox"] {
                 width: 18px;
                 height: 18px;
                 accent-color: var(--primary-color);
@@ -170,14 +206,14 @@
                 padding: 0;
             }
 
-            .transmission-option .opt-label-text {
+            .selection-card .opt-label-text {
                 font-size: 0.9rem;
                 font-weight: 600;
                 color: var(--primary-color);
                 line-height: 1.3;
             }
 
-            .transmission-option .opt-label-sub {
+            .selection-card .opt-label-sub {
                 font-size: 0.78rem;
                 color: #718096;
                 font-weight: 400;
@@ -185,7 +221,6 @@
                 margin-top: 2px;
             }
 
-            /* ── Collapsible LPR result rows ── */
             .lpr-fields {
                 overflow: hidden;
                 max-height: 0;
@@ -203,11 +238,7 @@
                 margin-top: 14px;
             }
 
-            .lpr-fields .form-group:last-child {
-                margin-bottom: 0;
-            }
-
-            /* ── Results ── */
+            /* Results Output Panel */
             .results {
                 margin-top: 25px;
                 border-top: 1px dashed var(--border-color);
@@ -219,6 +250,10 @@
                 justify-content: space-between;
                 margin-bottom: 6px;
                 font-size: 0.95rem;
+            }
+
+            .result-row.hidden {
+                display: none !important;
             }
 
             .result-row.sub-gst {
@@ -237,8 +272,7 @@
                 color: var(--primary-color);
             }
 
-            /* LPR disbursement rows — hidden by default */
-            .lpr-result-rows {
+            .dealing-result-rows {
                 overflow: hidden;
                 max-height: 0;
                 opacity: 0;
@@ -247,8 +281,8 @@
                     opacity 0.3s ease;
             }
 
-            .lpr-result-rows.open {
-                max-height: 200px;
+            .dealing-result-rows.open {
+                max-height: 250px;
                 opacity: 1;
             }
 
@@ -274,34 +308,57 @@
                 </p>
             </div>
 
-            <!-- Estate Values -->
-            <h2 class="section-title">Estate Values</h2>
+            <h2 class="section-title">Requirements</h2>
             <div class="form-group">
-                <label for="grossValue">Gross Value of Estate</label>
-                <div class="input-wrapper">
-                    <input
-                        type="number"
-                        id="grossValue"
-                        placeholder="0.00"
-                        inputmode="decimal"
-                        oninput="calculateAll()"
-                    />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="vicAssets">Gross Value of Victorian Assets</label>
-                <div class="input-wrapper">
-                    <input
-                        type="number"
-                        id="vicAssets"
-                        placeholder="0.00"
-                        inputmode="decimal"
-                        oninput="calculateAll()"
-                    />
+                <label>Is Probate or Letters of Administration Required?</label>
+                <div class="toggle-selector">
+                    <div
+                        id="probateYes"
+                        class="toggle-btn active"
+                        onclick="toggleProbateRequired(true)"
+                    >
+                        Yes
+                    </div>
+                    <div
+                        id="probateNo"
+                        class="toggle-btn"
+                        onclick="toggleProbateRequired(false)"
+                    >
+                        No
+                    </div>
                 </div>
             </div>
 
-            <!-- Estate Administration Fees -->
+            <div id="probateInputsWrapper" class="conditional-section">
+                <h2 class="section-title">Estate Values</h2>
+                <div class="form-group">
+                    <label for="grossValue">Gross Value of Estate</label>
+                    <div class="input-wrapper">
+                        <input
+                            type="number"
+                            id="grossValue"
+                            placeholder="0.00"
+                            inputmode="decimal"
+                            oninput="calculateAll()"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="vicAssets"
+                        >Gross Value of Victorian Assets</label
+                    >
+                    <div class="input-wrapper">
+                        <input
+                            type="number"
+                            id="vicAssets"
+                            placeholder="0.00"
+                            inputmode="decimal"
+                            oninput="calculateAll()"
+                        />
+                    </div>
+                </div>
+            </div>
+
             <h2 class="section-title">Estate Administration Fees</h2>
             <div class="form-group">
                 <label for="proAdminFee"
@@ -329,43 +386,116 @@
                 </div>
             </div>
 
-            <!-- Transmission Section -->
-            <h2 class="section-title">Transmission</h2>
+            <div id="transmissionSectionWrapper" class="conditional-section">
+                <h2 class="section-title">Transmission Applications</h2>
+                <div class="selection-options-group">
+                    <label
+                        class="selection-card"
+                        id="optTransNone"
+                        for="transNone"
+                    >
+                        <input
+                            type="radio"
+                            name="transmission"
+                            id="transNone"
+                            value="none"
+                            checked
+                            onchange="selectTransmission()"
+                        />
+                        <span>
+                            <span class="opt-label-text"
+                                >No Transmission Application</span
+                            >
+                            <span class="opt-label-sub"
+                                >No PEXA or LTO transmission fees apply</span
+                            >
+                        </span>
+                    </label>
 
-            <div class="transmission-options">
-                <label class="transmission-option" id="optNone" for="transNone">
-                    <input
-                        type="radio"
-                        name="transmission"
-                        id="transNone"
-                        value="none"
-                        checked
-                        onchange="selectTransmission()"
-                    />
-                    <span>
-                        <span class="opt-label-text">No Transmission</span>
-                        <span class="opt-label-sub"
-                            >No PEXA or Land Titles Office fees apply</span
+                    <label
+                        class="selection-card"
+                        id="optTransSingle"
+                        for="transSingle"
+                    >
+                        <input
+                            type="radio"
+                            name="transmission"
+                            id="transSingle"
+                            value="single"
+                            onchange="selectTransmission()"
+                        />
+                        <span>
+                            <span class="opt-label-text"
+                                >Transmission Application (LPR) — Single
+                                Title</span
+                            >
+                            <span class="opt-label-sub"
+                                >PEXA $44.44 (inc. GST) &nbsp;·&nbsp; LTO $45.60
+                                (inc. GST)</span
+                            >
+                        </span>
+                    </label>
+
+                    <label
+                        class="selection-card"
+                        id="optTransMultiple"
+                        for="transMultiple"
+                    >
+                        <input
+                            type="radio"
+                            name="transmission"
+                            id="transMultiple"
+                            value="multiple"
+                            onchange="selectTransmission()"
+                        />
+                        <span>
+                            <span class="opt-label-text"
+                                >Transmission Application (LPR) — Multiple
+                                Titles</span
+                            >
+                            <span class="opt-label-sub"
+                                >PEXA $64.90 (inc. GST) &nbsp;·&nbsp; LTO $45.60
+                                × no. of titles</span
+                            >
+                        </span>
+                    </label>
+                </div>
+
+                <div class="lpr-fields" id="lprFields">
+                    <div class="form-group">
+                        <label for="titleCount"
+                            >Number of Transmission Titles</label
                         >
-                    </span>
-                </label>
+                        <div class="input-wrapper">
+                            <input
+                                type="number"
+                                id="titleCount"
+                                placeholder="2"
+                                inputmode="numeric"
+                                min="2"
+                                style="padding-left: 14px"
+                                oninput="calculateAll()"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <h2 class="section-title">Survivorship Applications</h2>
+            <div class="selection-options-group">
                 <label
-                    class="transmission-option"
-                    id="optSingle"
-                    for="transSingle"
+                    class="selection-card"
+                    id="optSurvivorship"
+                    for="chkSurvivorship"
                 >
                     <input
-                        type="radio"
-                        name="transmission"
-                        id="transSingle"
-                        value="single"
-                        onchange="selectTransmission()"
+                        type="checkbox"
+                        id="chkSurvivorship"
+                        onchange="toggleSurvivorshipSelection()"
                     />
                     <span>
                         <span class="opt-label-text"
-                            >Application by Legal Personal Representative —
-                            Single Title</span
+                            >Survivorship Application (Joint Proprietor)</span
                         >
                         <span class="opt-label-sub"
                             >PEXA $44.44 (inc. GST) &nbsp;·&nbsp; LTO $45.60
@@ -373,65 +503,19 @@
                         >
                     </span>
                 </label>
-
-                <label
-                    class="transmission-option"
-                    id="optMultiple"
-                    for="transMultiple"
-                >
-                    <input
-                        type="radio"
-                        name="transmission"
-                        id="transMultiple"
-                        value="multiple"
-                        onchange="selectTransmission()"
-                    />
-                    <span>
-                        <span class="opt-label-text"
-                            >Application by Legal Personal Representative —
-                            Multiple Titles</span
-                        >
-                        <span class="opt-label-sub"
-                            >PEXA $64.90 (inc. GST) &nbsp;·&nbsp; LTO $45.60 ×
-                            no. of titles (inc. GST)</span
-                        >
-                    </span>
-                </label>
             </div>
 
-            <!-- Title count input — shown only for multiple titles -->
-            <div class="lpr-fields" id="lprFields">
-                <div class="form-group">
-                    <label for="titleCount">Number of Titles</label>
-                    <div class="input-wrapper" style="--prefix: &quot;&quot;">
-                        <input
-                            type="number"
-                            id="titleCount"
-                            placeholder="1"
-                            inputmode="numeric"
-                            min="2"
-                            style="padding-left: 14px"
-                            oninput="calculateAll()"
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <!-- Results -->
             <div class="results">
-                <div class="result-row">
-                    <span
-                        >Probate Fee (Administration &amp; Probate Rules
-                        2023):</span
-                    >
+                <div class="result-row dynamic-probate-row">
+                    <span>Probate / Admin Fee (Rules 2023):</span>
                     <span class="value" id="remunerationOut">$0.00</span>
                 </div>
-                <div class="result-row sub-gst">
+                <div class="result-row sub-gst dynamic-probate-row">
                     <span>+ 10% GST:</span>
                     <span class="value" id="remunerationGstOut">$0.00</span>
                 </div>
                 <div
-                    class="result-row sub-gst"
+                    class="result-row sub-gst dynamic-probate-row"
                     style="
                         margin-top: -6px;
                         margin-bottom: 12px;
@@ -452,23 +536,22 @@
                     <span class="value" id="adminGstOut">$0.00</span>
                 </div>
 
-                <div class="result-row">
+                <div class="result-row dynamic-probate-row">
                     <span>RedCrest Advertisement Fee:</span>
                     <span class="value" id="advertisementFeeOut">$0.00</span>
                 </div>
-                <div class="result-row">
+                <div class="result-row dynamic-probate-row">
                     <span>RedCrest Filing Fee:</span>
                     <span class="value" id="filingFeeOut">$0.00</span>
                 </div>
 
-                <!-- Transmission disbursement rows (shown only when single/multiple selected) -->
-                <div class="lpr-result-rows" id="lprResultRows">
+                <div class="dealing-result-rows" id="dealingResultRows">
                     <div class="result-row">
-                        <span>PEXA Fee (inc. GST):</span>
+                        <span>PEXA Disbursements (inc. GST):</span>
                         <span class="value" id="pexaOut">$0.00</span>
                     </div>
                     <div class="result-row">
-                        <span>Land Titles Office Fee (inc. GST):</span>
+                        <span>Land Titles Office Fees (inc. GST):</span>
                         <span class="value" id="ltoOut">$0.00</span>
                     </div>
                 </div>
@@ -478,6 +561,7 @@
                     <span class="value" id="totalOut">$0.00</span>
                 </div>
             </div>
+
             <div
                 style="
                     margin-top: 28px;
@@ -496,45 +580,85 @@
         </div>
 
         <script>
-            // Hardcoded transmission fees (inc. GST)
             const PEXA_SINGLE = 44.44;
             const PEXA_MULTIPLE = 64.9;
             const LTO_PER_TITLE = 45.6;
+
+            let isProbateRequired = true;
+
+            function toggleProbateRequired(isRequired) {
+                isProbateRequired = isRequired;
+
+                document
+                    .getElementById("probateYes")
+                    .classList.toggle("active", isRequired);
+                document
+                    .getElementById("probateNo")
+                    .classList.toggle("active", !isRequired);
+                document
+                    .getElementById("probateInputsWrapper")
+                    .classList.toggle("hidden", !isRequired);
+
+                document
+                    .querySelectorAll(".dynamic-probate-row")
+                    .forEach((row) => {
+                        row.classList.toggle("hidden", !isRequired);
+                    });
+
+                // Hide completely or reveal the transmission applications section
+                const transSection = document.getElementById(
+                    "transmissionSectionWrapper",
+                );
+                transSection.classList.toggle("hidden", !isRequired);
+
+                // If toggled to No, reset transmission choices back to "None"
+                if (!isRequired) {
+                    document.getElementById("transNone").checked = true;
+                    selectTransmission();
+                }
+
+                calculateAll();
+            }
 
             function selectTransmission() {
                 const val = document.querySelector(
                     'input[name="transmission"]:checked',
                 ).value;
 
-                // Highlight selected card
+                // Toggle Highlight Classes for Radios
                 document
-                    .querySelectorAll(".transmission-option")
-                    .forEach((el) => el.classList.remove("selected"));
-                const map = {
-                    none: "optNone",
-                    single: "optSingle",
-                    multiple: "optMultiple",
-                };
-                document.getElementById(map[val]).classList.add("selected");
+                    .getElementById("optTransNone")
+                    .classList.toggle("selected", val === "none");
+                document
+                    .getElementById("optTransSingle")
+                    .classList.toggle("selected", val === "single");
+                document
+                    .getElementById("optTransMultiple")
+                    .classList.toggle("selected", val === "multiple");
 
-                // Show title-count input only for multiple
+                // Toggle open numeric inputs field if multiple
                 const fieldsEl = document.getElementById("lprFields");
                 fieldsEl.classList.toggle("open", val === "multiple");
 
-                // Show result rows for single or multiple
+                calculateAll();
+            }
+
+            function toggleSurvivorshipSelection() {
+                const isChecked =
+                    document.getElementById("chkSurvivorship").checked;
                 document
-                    .getElementById("lprResultRows")
-                    .classList.toggle("open", val !== "none");
+                    .getElementById("optSurvivorship")
+                    .classList.toggle("selected", isChecked);
 
                 calculateAll();
             }
 
             function calculateAll() {
-                const grossValue =
-                    parseFloat(document.getElementById("grossValue").value) ||
-                    0;
-                const vicValueForFiling =
-                    parseFloat(document.getElementById("vicAssets").value) || 0;
+                let remunerationBase = 0;
+                let remunerationGst = 0;
+                let advertisementFee = 0;
+                let filingFee = 0;
+
                 const proAdminFeeExGst =
                     parseFloat(document.getElementById("proAdminFee").value) ||
                     0;
@@ -545,124 +669,133 @@
                     2,
                     parseInt(document.getElementById("titleCount").value) || 2,
                 );
+                const survivorshipActive =
+                    document.getElementById("chkSurvivorship").checked;
 
-                // Rule 9.01 scale
-                let remunerationBase = 0;
-                switch (true) {
-                    case grossValue <= 0:
-                        remunerationBase = 0;
-                        break;
-                    case grossValue <= 10000:
-                        remunerationBase = 213;
-                        break;
-                    case grossValue <= 12000:
-                        remunerationBase = 246;
-                        break;
-                    case grossValue <= 14000:
-                        remunerationBase = 283;
-                        break;
-                    case grossValue <= 16000:
-                        remunerationBase = 318;
-                        break;
-                    case grossValue <= 18000:
-                        remunerationBase = 354;
-                        break;
-                    case grossValue <= 20000:
-                        remunerationBase = 391;
-                        break;
-                    case grossValue <= 30000:
-                        remunerationBase = 425;
-                        break;
-                    case grossValue <= 40000:
-                        remunerationBase = 463;
-                        break;
-                    case grossValue <= 50000:
-                        remunerationBase = 499;
-                        break;
-                    case grossValue <= 60000:
-                        remunerationBase = 535;
-                        break;
-                    case grossValue <= 70000:
-                        remunerationBase = 572;
-                        break;
-                    case grossValue <= 80000:
-                        remunerationBase = 608;
-                        break;
-                    case grossValue <= 90000:
-                        remunerationBase = 644;
-                        break;
-                    case grossValue <= 100000:
-                        remunerationBase = 680;
-                        break;
-                    default:
-                        const excess = grossValue - 100000;
-                        const blocks = Math.ceil(excess / 50000);
-                        remunerationBase = 680 + blocks * 35;
+                if (isProbateRequired) {
+                    const grossValue =
+                        parseFloat(
+                            document.getElementById("grossValue").value,
+                        ) || 0;
+                    const vicValueForFiling =
+                        parseFloat(
+                            document.getElementById("vicAssets").value,
+                        ) || 0;
+
+                    switch (true) {
+                        case grossValue <= 0:
+                            remunerationBase = 0;
+                            break;
+                        case grossValue <= 10000:
+                            remunerationBase = 213;
+                            break;
+                        case grossValue <= 12000:
+                            remunerationBase = 246;
+                            break;
+                        case grossValue <= 14000:
+                            remunerationBase = 283;
+                            break;
+                        case grossValue <= 16000:
+                            remunerationBase = 318;
+                            break;
+                        case grossValue <= 18000:
+                            remunerationBase = 354;
+                            break;
+                        case grossValue <= 20000:
+                            remunerationBase = 391;
+                            break;
+                        case grossValue <= 30000:
+                            remunerationBase = 425;
+                            break;
+                        case grossValue <= 40000:
+                            remunerationBase = 463;
+                            break;
+                        case grossValue <= 50000:
+                            remunerationBase = 499;
+                            break;
+                        case grossValue <= 60000:
+                            remunerationBase = 535;
+                            break;
+                        case grossValue <= 70000:
+                            remunerationBase = 572;
+                            break;
+                        case grossValue <= 80000:
+                            remunerationBase = 608;
+                            break;
+                        case grossValue <= 90000:
+                            remunerationBase = 644;
+                            break;
+                        case grossValue <= 100000:
+                            remunerationBase = 680;
+                            break;
+                        default:
+                            const excess = grossValue - 100000;
+                            const blocks = Math.ceil(excess / 50000);
+                            remunerationBase = 680 + blocks * 35;
+                    }
+
+                    remunerationGst = remunerationBase * 0.1;
+                    advertisementFee =
+                        vicValueForFiling > 0 || grossValue > 0 ? 37.0 : 0;
+
+                    switch (true) {
+                        case vicValueForFiling <= 0:
+                            filingFee = 0;
+                            break;
+                        case vicValueForFiling < 250000:
+                            filingFee = 0.0;
+                            break;
+                        case vicValueForFiling < 500000:
+                            filingFee = 529.5;
+                            break;
+                        case vicValueForFiling < 1000000:
+                            filingFee = 1059.0;
+                            break;
+                        case vicValueForFiling < 2000000:
+                            filingFee = 2471.1;
+                            break;
+                        case vicValueForFiling < 3000000:
+                            filingFee = 4942.1;
+                            break;
+                        case vicValueForFiling < 5000000:
+                            filingFee = 7396.4;
+                            break;
+                        case vicValueForFiling < 7000000:
+                            filingFee = 12355.4;
+                            break;
+                        default:
+                            filingFee = 17297.5;
+                    }
                 }
 
-                const remunerationGst = remunerationBase * 0.1;
                 const adminFeesGst = proAdminFeeExGst * 0.1;
 
-                // RedCrest fees
-                const advertisementFee =
-                    vicValueForFiling > 0 || grossValue > 0 ? 37.0 : 0;
-                let filingFee = 0;
-                switch (true) {
-                    case vicValueForFiling <= 0:
-                        filingFee = 0;
-                        break;
-                    case vicValueForFiling < 250000:
-                        filingFee = 0.0;
-                        break;
-                    case vicValueForFiling < 500000:
-                        filingFee = 529.5;
-                        break;
-                    case vicValueForFiling < 1000000:
-                        filingFee = 1059.0;
-                        break;
-                    case vicValueForFiling < 2000000:
-                        filingFee = 2471.1;
-                        break;
-                    case vicValueForFiling < 3000000:
-                        filingFee = 4942.1;
-                        break;
-                    case vicValueForFiling < 5000000:
-                        filingFee = 7396.4;
-                        break;
-                    case vicValueForFiling < 7000000:
-                        filingFee = 12355.4;
-                        break;
-                    default:
-                        filingFee = 17297.5;
-                }
+                // Add up property dealing fees independently
+                let totalPexa = 0;
+                let totalLto = 0;
 
-                // Transmission fees (all inc. GST — no further GST added)
-                let pexaFee = 0;
-                let ltoFee = 0;
+                // 1. Process Transmission Selection
                 if (transmission === "single") {
-                    pexaFee = PEXA_SINGLE;
-                    ltoFee = LTO_PER_TITLE;
+                    totalPexa += PEXA_SINGLE;
+                    totalLto += LTO_PER_TITLE;
                 } else if (transmission === "multiple") {
-                    pexaFee = PEXA_MULTIPLE;
-                    ltoFee = LTO_PER_TITLE * titleCount;
-                    // Update LTO label to show per-title breakdown
-                    document
-                        .getElementById("ltoOut")
-                        .closest(".result-row")
-                        .querySelector("span:first-child").innerText =
-                        `Land Titles Office Fee (${titleCount} × $${LTO_PER_TITLE.toFixed(2)}, inc. GST):`;
+                    totalPexa += PEXA_MULTIPLE;
+                    totalLto += LTO_PER_TITLE * titleCount;
                 }
 
-                // Reset LTO label for single
-                if (transmission === "single") {
-                    document
-                        .getElementById("ltoOut")
-                        .closest(".result-row")
-                        .querySelector("span:first-child").innerText =
-                        "Land Titles Office Fee (inc. GST):";
+                // 2. Process Survivorship Selection
+                if (survivorshipActive) {
+                    totalPexa += PEXA_SINGLE;
+                    totalLto += LTO_PER_TITLE;
                 }
 
-                // Output
+                // Show property output container rows if any property transaction is active
+                const hasDealing =
+                    transmission !== "none" || survivorshipActive;
+                document
+                    .getElementById("dealingResultRows")
+                    .classList.toggle("open", hasDealing);
+
                 document.getElementById("remunerationOut").innerText =
                     fmt(remunerationBase);
                 document.getElementById("remunerationGstOut").innerText =
@@ -675,8 +808,8 @@
                     fmt(advertisementFee);
                 document.getElementById("filingFeeOut").innerText =
                     fmt(filingFee);
-                document.getElementById("pexaOut").innerText = fmt(pexaFee);
-                document.getElementById("ltoOut").innerText = fmt(ltoFee);
+                document.getElementById("pexaOut").innerText = fmt(totalPexa);
+                document.getElementById("ltoOut").innerText = fmt(totalLto);
 
                 const total =
                     remunerationBase +
@@ -685,8 +818,8 @@
                     adminFeesGst +
                     advertisementFee +
                     filingFee +
-                    pexaFee +
-                    ltoFee;
+                    totalPexa +
+                    totalLto;
 
                 document.getElementById("totalOut").innerText = fmt(total);
             }
@@ -698,8 +831,8 @@
                 );
             }
 
-            // Set initial selected state on load
-            document.getElementById("optNone").classList.add("selected");
+            // Init state styling mapping
+            document.getElementById("optTransNone").classList.add("selected");
         </script>
         <script>
             if ("serviceWorker" in navigator) {
