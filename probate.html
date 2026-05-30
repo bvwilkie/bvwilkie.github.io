@@ -1,497 +1,693 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administration & Probate Fees (Vic.)</title>
-    <style>
-        :root {
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --primary-color: #1a365d;
-            --accent-color: #2b6cb0;
-            --border-color: #e2e8f0;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Administration & Probate Fees (Vic.)</title>
+        <style>
+            :root {
+                --bg-color: #f4f6f9;
+                --card-bg: #ffffff;
+                --text-color: #333333;
+                --primary-color: #1a365d;
+                --accent-color: #2b6cb0;
+                --border-color: #e2e8f0;
+            }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-        }
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    Helvetica, Arial, sans-serif;
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                margin: 0;
+                padding: 15px;
+                display: flex;
+                justify-content: center;
+            }
 
-        .container {
-            background: var(--card-bg);
-            width: 100%;
-            max-width: 440px;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-        }
+            .container {
+                background: var(--card-bg);
+                width: 100%;
+                max-width: 440px;
+                padding: 24px;
+                border-radius: 16px;
+                box-shadow:
+                    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+                    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                border: 1px solid var(--border-color);
+            }
 
-        .header {
-            text-align: center;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 14px;
-            margin-bottom: 22px;
-        }
+            .header {
+                text-align: center;
+                border-bottom: 2px solid var(--primary-color);
+                padding-bottom: 14px;
+                margin-bottom: 22px;
+            }
 
-        .header h1 {
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-        }
+            .header h1 {
+                font-size: 1.4rem;
+                color: var(--primary-color);
+                margin: 0;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 700;
+            }
 
-        .header p {
-            font-size: 0.85rem;
-            color: #718096;
-            margin: 6px 0 0 0;
-            line-height: 1.4;
-        }
+            .header p {
+                font-size: 0.85rem;
+                color: #718096;
+                margin: 6px 0 0 0;
+                line-height: 1.4;
+            }
 
-        h2.section-title {
-            font-size: 0.95rem;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            margin: 22px 0 12px 0;
-            letter-spacing: 0.75px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 4px;
-            font-weight: 700;
-        }
+            h2.section-title {
+                font-size: 0.95rem;
+                color: var(--accent-color);
+                text-transform: uppercase;
+                margin: 22px 0 12px 0;
+                letter-spacing: 0.75px;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 4px;
+                font-weight: 700;
+            }
 
-        .form-group {
-            margin-bottom: 16px;
-        }
+            .form-group {
+                margin-bottom: 16px;
+            }
 
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--primary-color);
-        }
+            label {
+                display: block;
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin-bottom: 6px;
+                color: var(--primary-color);
+            }
 
-        .input-wrapper {
-            position: relative;
-        }
+            .input-wrapper {
+                position: relative;
+            }
 
-        .input-wrapper::before {
-            content: "$";
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #a0aec0;
-            font-weight: 500;
-        }
+            .input-wrapper::before {
+                content: "$";
+                position: absolute;
+                left: 14px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #a0aec0;
+                font-weight: 500;
+            }
 
-        input[type="number"] {
-            width: 100%;
-            padding: 12px 14px 12px 30px;
-            font-size: 1.05rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-sizing: border-box;
-            background-color: #f8fafc;
-            -moz-appearance: textfield;
-            transition: all 0.2s ease;
-        }
+            input[type="number"] {
+                width: 100%;
+                padding: 12px 14px 12px 30px;
+                font-size: 1.05rem;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                box-sizing: border-box;
+                background-color: #f8fafc;
+                -moz-appearance: textfield;
+                transition: all 0.2s ease;
+            }
 
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
 
-        input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            background-color: #fff;
-            box-shadow: 0 0 0 3px rgba(66,153,225,0.15);
-        }
+            input:focus {
+                outline: none;
+                border-color: var(--accent-color);
+                background-color: #fff;
+                box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+            }
 
-        /* ── Transmission radio options ── */
-        .transmission-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+            /* ── Transmission radio options ── */
+            .transmission-options {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
 
-        .transmission-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            background: #eef2f7;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 1.5px solid transparent;
-            transition: border-color 0.2s, background 0.2s;
-        }
+            .transmission-option {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 14px 16px;
+                background: #eef2f7;
+                border-radius: 10px;
+                cursor: pointer;
+                border: 1.5px solid transparent;
+                transition:
+                    border-color 0.2s,
+                    background 0.2s;
+            }
 
-        .transmission-option:hover {
-            border-color: var(--accent-color);
-            background: #e6eef8;
-        }
+            .transmission-option:hover {
+                border-color: var(--accent-color);
+                background: #e6eef8;
+            }
 
-        .transmission-option.selected {
-            border-color: var(--primary-color);
-            background: #dbeafe;
-        }
+            .transmission-option.selected {
+                border-color: var(--primary-color);
+                background: #dbeafe;
+            }
 
-        .transmission-option input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary-color);
-            cursor: pointer;
-            flex-shrink: 0;
-            margin: 0;
-            padding: 0;
-        }
+            .transmission-option input[type="radio"] {
+                width: 18px;
+                height: 18px;
+                accent-color: var(--primary-color);
+                cursor: pointer;
+                flex-shrink: 0;
+                margin: 0;
+                padding: 0;
+            }
 
-        .transmission-option .opt-label-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            line-height: 1.3;
-        }
+            .transmission-option .opt-label-text {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--primary-color);
+                line-height: 1.3;
+            }
 
-        .transmission-option .opt-label-sub {
-            font-size: 0.78rem;
-            color: #718096;
-            font-weight: 400;
-            display: block;
-            margin-top: 2px;
-        }
+            .transmission-option .opt-label-sub {
+                font-size: 0.78rem;
+                color: #718096;
+                font-weight: 400;
+                display: block;
+                margin-top: 2px;
+            }
 
-        /* ── Collapsible LPR result rows ── */
-        .lpr-fields {
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
-            margin-top: 0;
-        }
+            /* ── Collapsible LPR result rows ── */
+            .lpr-fields {
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                transition:
+                    max-height 0.35s ease,
+                    opacity 0.3s ease,
+                    margin-top 0.3s ease;
+                margin-top: 0;
+            }
 
-        .lpr-fields.open {
-            max-height: 300px;
-            opacity: 1;
-            margin-top: 14px;
-        }
+            .lpr-fields.open {
+                max-height: 300px;
+                opacity: 1;
+                margin-top: 14px;
+            }
 
-        .lpr-fields .form-group:last-child {
-            margin-bottom: 0;
-        }
+            .lpr-fields .form-group:last-child {
+                margin-bottom: 0;
+            }
 
-        /* ── Results ── */
-        .results {
-            margin-top: 25px;
-            border-top: 1px dashed var(--border-color);
-            padding-top: 15px;
-        }
+            /* ── Results ── */
+            .results {
+                margin-top: 25px;
+                border-top: 1px dashed var(--border-color);
+                padding-top: 15px;
+            }
 
-        .result-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 0.95rem;
-        }
+            .result-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 6px;
+                font-size: 0.95rem;
+            }
 
-        .result-row.sub-gst {
-            font-size: 0.82rem;
-            color: #718096;
-            margin-bottom: 10px;
-            padding-left: 15px;
-        }
+            .result-row.sub-gst {
+                font-size: 0.82rem;
+                color: #718096;
+                margin-bottom: 10px;
+                padding-left: 15px;
+            }
 
-        .result-row.total {
-            font-weight: bold;
-            font-size: 1.25rem;
-            border-top: 2px solid var(--primary-color);
-            padding-top: 12px;
-            margin-top: 14px;
-            color: var(--primary-color);
-        }
+            .result-row.total {
+                font-weight: bold;
+                font-size: 1.25rem;
+                border-top: 2px solid var(--primary-color);
+                padding-top: 12px;
+                margin-top: 14px;
+                color: var(--primary-color);
+            }
 
-        /* LPR disbursement rows — hidden by default */
-        .lpr-result-rows {
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
-            transition: max-height 0.35s ease, opacity 0.3s ease;
-        }
+            /* LPR disbursement rows — hidden by default */
+            .lpr-result-rows {
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                transition:
+                    max-height 0.35s ease,
+                    opacity 0.3s ease;
+            }
 
-        .lpr-result-rows.open {
-            max-height: 200px;
-            opacity: 1;
-        }
+            .lpr-result-rows.open {
+                max-height: 200px;
+                opacity: 1;
+            }
 
-        .value {
-            font-variant-numeric: tabular-nums;
-            white-space: nowrap;
-            margin-left: 12px;
-            text-align: right;
-        }
+            .value {
+                font-variant-numeric: tabular-nums;
+                white-space: nowrap;
+                margin-left: 12px;
+                text-align: right;
+            }
 
-        .result-row span:first-child {
-            flex: 1;
-        }
-    </style>
-</head>
-<body>
+            .result-row span:first-child {
+                flex: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Administration & Probate Fees (Vic.)</h1>
+                <p>
+                    Administration &amp; Probate Rules 2023<br />Practitioners
+                    Remuneration Order 2026
+                </p>
+            </div>
 
-<div class="container">
-    <div class="header">
-        <h1>Administration & Probate Fees (Vic.)</h1>
-        <p>Administration &amp; Probate Rules 2023<br>Practitioners Remuneration Order 2026</p>
-    </div>
+            <!-- Estate Values -->
+            <h2 class="section-title">Estate Values</h2>
+            <div class="form-group">
+                <label for="grossValue">Gross Value of Estate</label>
+                <div class="input-wrapper">
+                    <input
+                        type="number"
+                        id="grossValue"
+                        placeholder="0.00"
+                        inputmode="decimal"
+                        oninput="calculateAll()"
+                    />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vicAssets">Gross Value of Victorian Assets</label>
+                <div class="input-wrapper">
+                    <input
+                        type="number"
+                        id="vicAssets"
+                        placeholder="0.00"
+                        inputmode="decimal"
+                        oninput="calculateAll()"
+                    />
+                </div>
+            </div>
 
-    <!-- Estate Values -->
-    <h2 class="section-title">Estate Values</h2>
-    <div class="form-group">
-        <label for="grossValue">Gross Value of Estate</label>
-        <div class="input-wrapper">
-            <input type="number" id="grossValue" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="vicAssets">Gross Value of Victorian Assets</label>
-        <div class="input-wrapper">
-            <input type="number" id="vicAssets" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
-        </div>
-    </div>
+            <!-- Estate Administration Fees -->
+            <h2 class="section-title">Estate Administration Fees</h2>
+            <div class="form-group">
+                <label for="proAdminFee"
+                    >Estimated Fees Under PRO (Excl. GST)</label
+                >
+                <div class="input-wrapper">
+                    <input
+                        type="number"
+                        id="proAdminFee"
+                        placeholder="0.00"
+                        inputmode="decimal"
+                        oninput="calculateAll()"
+                    />
+                </div>
+            </div>
 
-    <!-- Estate Administration Fees -->
-    <h2 class="section-title">Estate Administration Fees</h2>
-    <div class="form-group">
-        <label for="proAdminFee">Estimated Fees Under PRO (Excl. GST)</label>
-        <div class="input-wrapper">
-            <input type="number" id="proAdminFee" placeholder="0.00" inputmode="decimal" oninput="calculateAll()">
-        </div>
-    </div>
+            <!-- Transmission Section -->
+            <h2 class="section-title">Transmission</h2>
 
-    <!-- Transmission Section -->
-    <h2 class="section-title">Transmission</h2>
+            <div class="transmission-options">
+                <label class="transmission-option" id="optNone" for="transNone">
+                    <input
+                        type="radio"
+                        name="transmission"
+                        id="transNone"
+                        value="none"
+                        checked
+                        onchange="selectTransmission()"
+                    />
+                    <span>
+                        <span class="opt-label-text">No Transmission</span>
+                        <span class="opt-label-sub"
+                            >No PEXA or Land Titles Office fees apply</span
+                        >
+                    </span>
+                </label>
 
-    <div class="transmission-options">
-        <label class="transmission-option" id="optNone" for="transNone">
-            <input type="radio" name="transmission" id="transNone" value="none" checked onchange="selectTransmission()">
-            <span>
-                <span class="opt-label-text">No Transmission</span>
-                <span class="opt-label-sub">No PEXA or Land Titles Office fees apply</span>
-            </span>
-        </label>
+                <label
+                    class="transmission-option"
+                    id="optSingle"
+                    for="transSingle"
+                >
+                    <input
+                        type="radio"
+                        name="transmission"
+                        id="transSingle"
+                        value="single"
+                        onchange="selectTransmission()"
+                    />
+                    <span>
+                        <span class="opt-label-text"
+                            >Application by Legal Personal Representative —
+                            Single Title</span
+                        >
+                        <span class="opt-label-sub"
+                            >PEXA $44.44 (inc. GST) &nbsp;·&nbsp; LTO $45.60
+                            (inc. GST)</span
+                        >
+                    </span>
+                </label>
 
-        <label class="transmission-option" id="optSingle" for="transSingle">
-            <input type="radio" name="transmission" id="transSingle" value="single" onchange="selectTransmission()">
-            <span>
-                <span class="opt-label-text">Application by Legal Personal Representative — Single Title</span>
-                <span class="opt-label-sub">PEXA $44.44 (inc. GST) &nbsp;·&nbsp; LTO $45.60 (inc. GST)</span>
-            </span>
-        </label>
+                <label
+                    class="transmission-option"
+                    id="optMultiple"
+                    for="transMultiple"
+                >
+                    <input
+                        type="radio"
+                        name="transmission"
+                        id="transMultiple"
+                        value="multiple"
+                        onchange="selectTransmission()"
+                    />
+                    <span>
+                        <span class="opt-label-text"
+                            >Application by Legal Personal Representative —
+                            Multiple Titles</span
+                        >
+                        <span class="opt-label-sub"
+                            >PEXA $64.90 (inc. GST) &nbsp;·&nbsp; LTO $45.60 ×
+                            no. of titles (inc. GST)</span
+                        >
+                    </span>
+                </label>
+            </div>
 
-        <label class="transmission-option" id="optMultiple" for="transMultiple">
-            <input type="radio" name="transmission" id="transMultiple" value="multiple" onchange="selectTransmission()">
-            <span>
-                <span class="opt-label-text">Application by Legal Personal Representative — Multiple Titles</span>
-                <span class="opt-label-sub">PEXA $64.90 (inc. GST) &nbsp;·&nbsp; LTO $45.60 × no. of titles (inc. GST)</span>
-            </span>
-        </label>
-    </div>
+            <!-- Title count input — shown only for multiple titles -->
+            <div class="lpr-fields" id="lprFields">
+                <div class="form-group">
+                    <label for="titleCount">Number of Titles</label>
+                    <div class="input-wrapper" style="--prefix: &quot;&quot;">
+                        <input
+                            type="number"
+                            id="titleCount"
+                            placeholder="1"
+                            inputmode="numeric"
+                            min="2"
+                            style="padding-left: 14px"
+                            oninput="calculateAll()"
+                        />
+                    </div>
+                </div>
+            </div>
 
-    <!-- Title count input — shown only for multiple titles -->
-    <div class="lpr-fields" id="lprFields">
-        <div class="form-group">
-            <label for="titleCount">Number of Titles</label>
-            <div class="input-wrapper" style="--prefix: '';">
-                <input type="number" id="titleCount" placeholder="1" inputmode="numeric" min="2"
-                       style="padding-left: 14px;" oninput="calculateAll()">
+            <!-- Results -->
+            <div class="results">
+                <div class="result-row">
+                    <span
+                        >Probate Fee (Administration &amp; Probate Rules
+                        2023):</span
+                    >
+                    <span class="value" id="remunerationOut">$0.00</span>
+                </div>
+                <div class="result-row sub-gst">
+                    <span>+ 10% GST:</span>
+                    <span class="value" id="remunerationGstOut">$0.00</span>
+                </div>
+
+                <div class="result-row">
+                    <span>Estate Administration Fees (PRO):</span>
+                    <span class="value" id="adminFeesOut">$0.00</span>
+                </div>
+                <div class="result-row sub-gst">
+                    <span>+ 10% GST:</span>
+                    <span class="value" id="adminGstOut">$0.00</span>
+                </div>
+
+                <div class="result-row">
+                    <span>RedCrest Advertisement Fee:</span>
+                    <span class="value" id="advertisementFeeOut">$0.00</span>
+                </div>
+                <div class="result-row">
+                    <span>RedCrest Filing Fee:</span>
+                    <span class="value" id="filingFeeOut">$0.00</span>
+                </div>
+
+                <!-- Transmission disbursement rows (shown only when single/multiple selected) -->
+                <div class="lpr-result-rows" id="lprResultRows">
+                    <div class="result-row">
+                        <span>PEXA Fee (inc. GST):</span>
+                        <span class="value" id="pexaOut">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Land Titles Office Fee (inc. GST):</span>
+                        <span class="value" id="ltoOut">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="result-row total">
+                    <span>Total Estimated Cost (inc. GST):</span>
+                    <span class="value" id="totalOut">$0.00</span>
+                </div>
+            </div>
+            <div
+                style="
+                    margin-top: 28px;
+                    padding-top: 14px;
+                    border-top: 1px solid #e2e8f0;
+                    text-align: center;
+                    font-size: 0.75rem;
+                    color: #a0aec0;
+                    line-height: 1.6;
+                "
+            >
+                © Benjamin Wilkie 2026. All rights reserved. For informational
+                purposes only. Verify all fees. Not legal advice. Fees current
+                as at 29 May 2026.
             </div>
         </div>
-    </div>
 
-    <!-- Results -->
-    <div class="results">
-        <div class="result-row">
-            <span>Probate Fee (Administration &amp; Probate Rules 2023):</span>
-            <span class="value" id="remunerationOut">$0.00</span>
-        </div>
-        <div class="result-row sub-gst">
-            <span>+ 10% GST:</span>
-            <span class="value" id="remunerationGstOut">$0.00</span>
-        </div>
+        <script>
+            // Hardcoded transmission fees (inc. GST)
+            const PEXA_SINGLE = 44.44;
+            const PEXA_MULTIPLE = 64.9;
+            const LTO_PER_TITLE = 45.6;
 
-        <div class="result-row">
-            <span>Estate Administration Fees (PRO):</span>
-            <span class="value" id="adminFeesOut">$0.00</span>
-        </div>
-        <div class="result-row sub-gst">
-            <span>+ 10% GST:</span>
-            <span class="value" id="adminGstOut">$0.00</span>
-        </div>
+            function selectTransmission() {
+                const val = document.querySelector(
+                    'input[name="transmission"]:checked',
+                ).value;
 
-        <div class="result-row">
-            <span>RedCrest Advertisement Fee:</span>
-            <span class="value" id="advertisementFeeOut">$0.00</span>
-        </div>
-        <div class="result-row">
-            <span>RedCrest Filing Fee:</span>
-            <span class="value" id="filingFeeOut">$0.00</span>
-        </div>
+                // Highlight selected card
+                document
+                    .querySelectorAll(".transmission-option")
+                    .forEach((el) => el.classList.remove("selected"));
+                const map = {
+                    none: "optNone",
+                    single: "optSingle",
+                    multiple: "optMultiple",
+                };
+                document.getElementById(map[val]).classList.add("selected");
 
-        <!-- Transmission disbursement rows (shown only when single/multiple selected) -->
-        <div class="lpr-result-rows" id="lprResultRows">
-            <div class="result-row">
-                <span>PEXA Fee (inc. GST):</span>
-                <span class="value" id="pexaOut">$0.00</span>
-            </div>
-            <div class="result-row">
-                <span>Land Titles Office Fee (inc. GST):</span>
-                <span class="value" id="ltoOut">$0.00</span>
-            </div>
-        </div>
+                // Show title-count input only for multiple
+                const fieldsEl = document.getElementById("lprFields");
+                fieldsEl.classList.toggle("open", val === "multiple");
 
-        <div class="result-row total">
-            <span>Total Estimated Cost (inc. GST):</span>
-            <span class="value" id="totalOut">$0.00</span>
-        </div>
-    </div>
-    <div style="margin-top: 28px; padding-top: 14px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 0.75rem; color: #a0aec0; line-height: 1.6;">
-  © Benjamin Wilkie 2026. All rights reserved. For informational purposes only. Verify all fees.
-  Not legal advice. Fees current as at 29 May 2026.
-    </div>
-</div>
+                // Show result rows for single or multiple
+                document
+                    .getElementById("lprResultRows")
+                    .classList.toggle("open", val !== "none");
 
-<script>
-    // Hardcoded transmission fees (inc. GST)
-    const PEXA_SINGLE   = 44.44;
-    const PEXA_MULTIPLE = 64.90;
-    const LTO_PER_TITLE = 45.60;
+                calculateAll();
+            }
 
-    function selectTransmission() {
-        const val = document.querySelector('input[name="transmission"]:checked').value;
+            function calculateAll() {
+                const grossValue =
+                    parseFloat(document.getElementById("grossValue").value) ||
+                    0;
+                const vicValueForFiling =
+                    parseFloat(document.getElementById("vicAssets").value) || 0;
+                const proAdminFeeExGst =
+                    parseFloat(document.getElementById("proAdminFee").value) ||
+                    0;
+                const transmission = document.querySelector(
+                    'input[name="transmission"]:checked',
+                ).value;
+                const titleCount = Math.max(
+                    2,
+                    parseInt(document.getElementById("titleCount").value) || 2,
+                );
 
-        // Highlight selected card
-        document.querySelectorAll('.transmission-option').forEach(el => el.classList.remove('selected'));
-        const map = { none: 'optNone', single: 'optSingle', multiple: 'optMultiple' };
-        document.getElementById(map[val]).classList.add('selected');
+                // Rule 9.01 scale
+                let remunerationBase = 0;
+                switch (true) {
+                    case grossValue <= 0:
+                        remunerationBase = 0;
+                        break;
+                    case grossValue <= 10000:
+                        remunerationBase = 213;
+                        break;
+                    case grossValue <= 12000:
+                        remunerationBase = 246;
+                        break;
+                    case grossValue <= 14000:
+                        remunerationBase = 283;
+                        break;
+                    case grossValue <= 16000:
+                        remunerationBase = 318;
+                        break;
+                    case grossValue <= 18000:
+                        remunerationBase = 354;
+                        break;
+                    case grossValue <= 20000:
+                        remunerationBase = 391;
+                        break;
+                    case grossValue <= 30000:
+                        remunerationBase = 425;
+                        break;
+                    case grossValue <= 40000:
+                        remunerationBase = 463;
+                        break;
+                    case grossValue <= 50000:
+                        remunerationBase = 499;
+                        break;
+                    case grossValue <= 60000:
+                        remunerationBase = 535;
+                        break;
+                    case grossValue <= 70000:
+                        remunerationBase = 572;
+                        break;
+                    case grossValue <= 80000:
+                        remunerationBase = 608;
+                        break;
+                    case grossValue <= 90000:
+                        remunerationBase = 644;
+                        break;
+                    case grossValue <= 100000:
+                        remunerationBase = 680;
+                        break;
+                    default:
+                        const excess = grossValue - 100000;
+                        const blocks = Math.ceil(excess / 50000);
+                        remunerationBase = 680 + blocks * 35;
+                }
 
-        // Show title-count input only for multiple
-        const fieldsEl = document.getElementById('lprFields');
-        fieldsEl.classList.toggle('open', val === 'multiple');
+                const remunerationGst = remunerationBase * 0.1;
+                const adminFeesGst = proAdminFeeExGst * 0.1;
 
-        // Show result rows for single or multiple
-        document.getElementById('lprResultRows').classList.toggle('open', val !== 'none');
+                // RedCrest fees
+                const advertisementFee =
+                    vicValueForFiling > 0 || grossValue > 0 ? 37.0 : 0;
+                let filingFee = 0;
+                switch (true) {
+                    case vicValueForFiling <= 0:
+                        filingFee = 0;
+                        break;
+                    case vicValueForFiling < 250000:
+                        filingFee = 0.0;
+                        break;
+                    case vicValueForFiling < 500000:
+                        filingFee = 529.5;
+                        break;
+                    case vicValueForFiling < 1000000:
+                        filingFee = 1059.0;
+                        break;
+                    case vicValueForFiling < 2000000:
+                        filingFee = 2471.1;
+                        break;
+                    case vicValueForFiling < 3000000:
+                        filingFee = 4942.1;
+                        break;
+                    case vicValueForFiling < 5000000:
+                        filingFee = 7396.4;
+                        break;
+                    case vicValueForFiling < 7000000:
+                        filingFee = 12355.4;
+                        break;
+                    default:
+                        filingFee = 17297.5;
+                }
 
-        calculateAll();
-    }
+                // Transmission fees (all inc. GST — no further GST added)
+                let pexaFee = 0;
+                let ltoFee = 0;
+                if (transmission === "single") {
+                    pexaFee = PEXA_SINGLE;
+                    ltoFee = LTO_PER_TITLE;
+                } else if (transmission === "multiple") {
+                    pexaFee = PEXA_MULTIPLE;
+                    ltoFee = LTO_PER_TITLE * titleCount;
+                    // Update LTO label to show per-title breakdown
+                    document
+                        .getElementById("ltoOut")
+                        .closest(".result-row")
+                        .querySelector("span:first-child").innerText =
+                        `Land Titles Office Fee (${titleCount} × $${LTO_PER_TITLE.toFixed(2)}, inc. GST):`;
+                }
 
-    function calculateAll() {
-        const grossValue        = parseFloat(document.getElementById('grossValue').value) || 0;
-        const vicValueForFiling = parseFloat(document.getElementById('vicAssets').value) || 0;
-        const proAdminFeeExGst  = parseFloat(document.getElementById('proAdminFee').value) || 0;
-        const transmission      = document.querySelector('input[name="transmission"]:checked').value;
-        const titleCount        = Math.max(2, parseInt(document.getElementById('titleCount').value) || 2);
+                // Reset LTO label for single
+                if (transmission === "single") {
+                    document
+                        .getElementById("ltoOut")
+                        .closest(".result-row")
+                        .querySelector("span:first-child").innerText =
+                        "Land Titles Office Fee (inc. GST):";
+                }
 
-        // Rule 9.01 scale
-        let remunerationBase = 0;
-        switch (true) {
-            case (grossValue <= 0):       remunerationBase = 0;   break;
-            case (grossValue <= 10000):   remunerationBase = 213; break;
-            case (grossValue <= 12000):   remunerationBase = 246; break;
-            case (grossValue <= 14000):   remunerationBase = 283; break;
-            case (grossValue <= 16000):   remunerationBase = 318; break;
-            case (grossValue <= 18000):   remunerationBase = 354; break;
-            case (grossValue <= 20000):   remunerationBase = 391; break;
-            case (grossValue <= 30000):   remunerationBase = 425; break;
-            case (grossValue <= 40000):   remunerationBase = 463; break;
-            case (grossValue <= 50000):   remunerationBase = 499; break;
-            case (grossValue <= 60000):   remunerationBase = 535; break;
-            case (grossValue <= 70000):   remunerationBase = 572; break;
-            case (grossValue <= 80000):   remunerationBase = 608; break;
-            case (grossValue <= 90000):   remunerationBase = 644; break;
-            case (grossValue <= 100000):  remunerationBase = 680; break;
-            default:
-                const excess = grossValue - 100000;
-                const blocks = Math.ceil(excess / 50000);
-                remunerationBase = 680 + (blocks * 35);
-        }
+                // Output
+                document.getElementById("remunerationOut").innerText =
+                    fmt(remunerationBase);
+                document.getElementById("remunerationGstOut").innerText =
+                    fmt(remunerationGst);
+                document.getElementById("adminFeesOut").innerText =
+                    fmt(proAdminFeeExGst);
+                document.getElementById("adminGstOut").innerText =
+                    fmt(adminFeesGst);
+                document.getElementById("advertisementFeeOut").innerText =
+                    fmt(advertisementFee);
+                document.getElementById("filingFeeOut").innerText =
+                    fmt(filingFee);
+                document.getElementById("pexaOut").innerText = fmt(pexaFee);
+                document.getElementById("ltoOut").innerText = fmt(ltoFee);
 
-        const remunerationGst = remunerationBase * 0.10;
-        const adminFeesGst    = proAdminFeeExGst * 0.10;
+                const total =
+                    remunerationBase +
+                    remunerationGst +
+                    proAdminFeeExGst +
+                    adminFeesGst +
+                    advertisementFee +
+                    filingFee +
+                    pexaFee +
+                    ltoFee;
 
-        // RedCrest fees
-        const advertisementFee = (vicValueForFiling > 0 || grossValue > 0) ? 37.00 : 0;
-        let filingFee = 0;
-        switch (true) {
-            case (vicValueForFiling <= 0):        filingFee = 0;         break;
-            case (vicValueForFiling < 250000):    filingFee = 0.00;      break;
-            case (vicValueForFiling < 500000):    filingFee = 529.50;    break;
-            case (vicValueForFiling < 1000000):   filingFee = 1059.00;   break;
-            case (vicValueForFiling < 2000000):   filingFee = 2471.10;   break;
-            case (vicValueForFiling < 3000000):   filingFee = 4942.10;   break;
-            case (vicValueForFiling < 5000000):   filingFee = 7396.40;   break;
-            case (vicValueForFiling < 7000000):   filingFee = 12355.40;  break;
-            default:                              filingFee = 17297.50;
-        }
+                document.getElementById("totalOut").innerText = fmt(total);
+            }
 
-        // Transmission fees (all inc. GST — no further GST added)
-        let pexaFee = 0;
-        let ltoFee  = 0;
-        if (transmission === 'single') {
-            pexaFee = PEXA_SINGLE;
-            ltoFee  = LTO_PER_TITLE;
-        } else if (transmission === 'multiple') {
-            pexaFee = PEXA_MULTIPLE;
-            ltoFee  = LTO_PER_TITLE * titleCount;
-            // Update LTO label to show per-title breakdown
-            document.getElementById('ltoOut').closest('.result-row')
-                .querySelector('span:first-child').innerText =
-                `Land Titles Office Fee (${titleCount} × $${LTO_PER_TITLE.toFixed(2)}, inc. GST):`;
-        }
+            function fmt(amount) {
+                if (amount === 0) return "$0.00";
+                return (
+                    "$" + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")
+                );
+            }
 
-        // Reset LTO label for single
-        if (transmission === 'single') {
-            document.getElementById('ltoOut').closest('.result-row')
-                .querySelector('span:first-child').innerText =
-                'Land Titles Office Fee (inc. GST):';
-        }
-
-        // Output
-        document.getElementById('remunerationOut').innerText     = fmt(remunerationBase);
-        document.getElementById('remunerationGstOut').innerText  = fmt(remunerationGst);
-        document.getElementById('adminFeesOut').innerText        = fmt(proAdminFeeExGst);
-        document.getElementById('adminGstOut').innerText         = fmt(adminFeesGst);
-        document.getElementById('advertisementFeeOut').innerText = fmt(advertisementFee);
-        document.getElementById('filingFeeOut').innerText        = fmt(filingFee);
-        document.getElementById('pexaOut').innerText             = fmt(pexaFee);
-        document.getElementById('ltoOut').innerText              = fmt(ltoFee);
-
-        const total = remunerationBase + remunerationGst
-                    + proAdminFeeExGst + adminFeesGst
-                    + advertisementFee + filingFee
-                    + pexaFee + ltoFee;
-
-        document.getElementById('totalOut').innerText = fmt(total);
-    }
-
-    function fmt(amount) {
-        if (amount === 0) return "$0.00";
-        return "$" + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    }
-
-    // Set initial selected state on load
-    document.getElementById('optNone').classList.add('selected');
-</script>
-
-</body>
+            // Set initial selected state on load
+            document.getElementById("optNone").classList.add("selected");
+        </script>
+        <script>
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", () => {
+                    navigator.serviceWorker
+                        .register("./sw.js")
+                        .then((reg) =>
+                            console.log("Service Worker registered", reg),
+                        )
+                        .catch((err) =>
+                            console.error(
+                                "Service Worker registration failed",
+                                err,
+                            ),
+                        );
+                });
+            }
+        </script>
+    </body>
 </html>
